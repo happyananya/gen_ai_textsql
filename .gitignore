@@ -1,0 +1,20 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+
+# run artifacts
+traces/*.jsonl
+experiments/results/
+eval/spider/data/
+.cache/
+
+# benchmark datasets (Spider / BIRD)
+data/

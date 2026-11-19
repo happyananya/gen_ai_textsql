@@ -1,0 +1,45 @@
+[project]
+name = "smart-db-assistant"
+version = "0.1.0"
+description = "Natural-language to SQL assistant over a Supabase (PostgreSQL) e-commerce database"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Gurleen Kaur" },
+  { name = "Ananya Agarwal" },
+  { name = "Harindham Sharma" },
+]
+dependencies = [
+  "anthropic>=1.0",
+  "psycopg[binary]>=3.2",
+  "sqlglot>=25.0",
+  "pydantic>=2.7",
+  "python-dotenv>=1.0",
+  "pandas>=2.2",
+]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.38", "altair>=5.3"]
+rag = ["sentence-transformers>=3.0", "numpy>=1.26"]
+seed = ["faker>=26.0"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+sda-ask = "smart_db_assistant.cli:main"
+sda-eval = "smart_db_assistant.eval.run_eval:main"
+sda-bench = "smart_db_assistant.benchmark.run:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/smart_db_assistant"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src"]
